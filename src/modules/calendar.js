@@ -7,7 +7,6 @@ async function fetchHTML(url) {
     return html
 }
 
-
 async function parseCalendar(url) {
     const html = await fetchHTML(url);
     const $ = cheerio.load(html);
@@ -34,7 +33,28 @@ async function parseCalendar(url) {
     return availability;
 }
 
-async function findCommonFreeDay(urls) {
+
+async function fetchCalendarLinks(url) {
+  const response = await fetch(url);
+  const html = await response.text();
+  const $ = cheerio.load(html);
+  const calendarLinks = [];
+
+  const baseURL = url;
+
+  $('div.col.s12.center ul li a').each((index, element) => {
+    const relativePath = $(element).attr('href');
+    const fullURL = new URL(relativePath, baseURL).href;
+    calendarLinks.push(fullURL);
+  });
+  return calendarLinks  
+}
+
+async function findCommonFreeDays(url) {
+
+  // get calendar links
+  const urls = await fetchCalendarLinks(url);
+
   const availabilities = await Promise.all(urls.map(url => parseCalendar(url)));
 
   const commonAvailability = {
@@ -42,8 +62,6 @@ async function findCommonFreeDay(urls) {
     'Saturday': true,
     'Sunday': true,
   };
-
-  console.log(Object.keys(commonAvailability))
 
   availabilities.forEach(availability => {
     Object.keys(commonAvailability).forEach(day => {
@@ -57,7 +75,10 @@ async function findCommonFreeDay(urls) {
   return Object.keys(commonAvailability).filter(day => commonAvailability[day]);
 }
 
+
+
 module.exports = {
-    parseCalendar,
-    findCommonFreeDay
+  findCommonFreeDays
 };
+
+findCommonFreeDays('https://courselab.lnu.se/scraper-site-2/calendar/').then(console.log)

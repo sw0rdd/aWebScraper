@@ -19,7 +19,6 @@
     "test": "npm run lint",
     "clean": "rm -rf build/",
     "clean-all": "npm run clean && rm -rf node_modules/ && rm -f package-lock.json"
-
   },
   "repository": {
     "type": "git",
@@ -43,6 +42,8 @@
     "vite": "^5.1.1"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.0.0-rc.12",
+    "fetch-cookie": "^2.2.0",
+    "tough-cookie": "^4.1.3"
   }
 }
