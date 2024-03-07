@@ -13,13 +13,13 @@ The three friends Peter, Paul, and Mary usually get together one weekend every m
 Clone the repo 
 
 ```
-git clone git@gitlab.lnu.se:1dv528/student/sy222ea/b1-scraper.git
+git clone git@github.com:sw0rdd/aWebScraper.git
 ```
 <br>
 
 Navigate to the repo
 ```
-cd your_desired_path/b1-scraper
+cd your_desired_path/aWebScraper
 ```
 
 To be able to run the application and the linters you will first need node package manager
