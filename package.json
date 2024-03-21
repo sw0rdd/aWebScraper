@@ -21,10 +21,6 @@
     "clean": "rm -rf build/",
     "clean-all": "npm run clean && rm -rf node_modules/ && rm -f package-lock.json"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.lnu.se:1dv528/student/sy222ea/b1-scraper.git"
-  },
   "keywords": [],
   "author": "Seif-Alamir Yousef",
   "license": "ISC",
